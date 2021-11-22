@@ -29,7 +29,11 @@ const registerSchema = new mongoose.Schema({
     email: String,
     contact: Number,
     password: String,
-    confirmPassword: String
+    confirmPassword: String,
+    contact1: String, 
+    contact1number: Number, 
+    contact2: String, 
+    contact2number: Number
 })
 
 
@@ -54,7 +58,7 @@ app.get('/signin', function (req, res) {
     res.sendFile(path.join(__dirname, '../WEBSITE/static/login.html'));
 });
 
-var myUsername='';
+var myUsername = '';
 
 app.post('/needHelp', (req, res) => {
     //    console.log(req.body);
@@ -132,6 +136,7 @@ app.post('/signup', function (req, res) {
                     </form> `)
                     }).catch(() => {
                         res.status(400).send("item was not saved to the databse")
+
                     })
                 }
                 else {
