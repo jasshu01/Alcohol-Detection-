@@ -43,12 +43,13 @@
             background: #ebebeb;
         }
 
-form{
-    margin: auto;
-    margin-left: 30%;
-    width: auto;
-    margin-top: 4vh;
-}
+        form {
+            margin: auto;
+            margin-left: 30%;
+            width: auto;
+            margin-top: 4vh;
+        }
+
         button {
             margin: auto;
 
@@ -58,14 +59,52 @@ form{
     <title>Ask for Help</title>
 </head>
 
+
+<script>
+    var x = localStorage.getItem("username");
+</script>
+
+
 <body>
 
 
     <div id="map"></div>
+    <form action="/sendingHelp" id="myform" method="POST">
+    <!-- <input type="text" name="user_name" id="user_name" style="display: none;"> -->
+    <button class="btn btn-primary" id="btn" type="submit">Press this button to get HELP</button>
+    </form>
+    <!-- </form> -->
 
-        <form action="/sendingHelp" method="POST">
-            <button class="btn btn-primary"  type="submit">Press this button to get HELP</button>
-        </form>
+
+
+
+
+    <script>
+        // document.getElementById("btn").addEventListener("click", () => {
+        //     var xhr = new XMLHttpRequest();
+        //     xhr.open("POST", "/sendingHelp", true);
+        //     xhr.setRequestHeader('Content-Type', 'application/json');
+        //     xhr.send(JSON.stringify({
+        //         user_name: localStorage.getItem("username")
+        //     }));
+
+        // })
+
+
+
+// document.getElementById("myform").addEventListener("onmouseover",()=>{
+//     document.getElementById("user_name").val = localStorage.getItem("username");
+// })
+
+
+        // document.getElementById("user_name").val = localStorage.getItem("username");
+        // console.log(document.getElementById("user_name").val)
+        // document.getElementById("btn").addEventListener("click", () => {
+        //     document.getElementById("myform").submit();
+        // }
+
+
+    </script>
 
 
 
@@ -79,6 +118,8 @@ form{
 
         let map, infoWindow;
         function initMap() {
+            // console.log(localStorage.getItem("username"))
+            // document.getElementById("user_name").val = localStorage.getItem("username");
             map = new google.maps.Map(document.getElementById("map"), {
                 center: { lat: -34.397, lng: 150.644 },
                 zoom: 6,
@@ -99,6 +140,8 @@ form{
                             };
                             infoWindow.setPosition(pos);
                             infoWindow.setContent("Location found.");
+
+                            // document.getElementById("user_name").val = localStorage.getItem("username");
                             infoWindow.open(map);
                             map.setCenter(pos);
                         },
@@ -112,6 +155,11 @@ form{
                 }
             });
         }
+
+
+
+
+
 
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
             infoWindow.setPosition(pos);
